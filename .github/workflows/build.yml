@@ -41,13 +41,20 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Package
+        run: yarn pack
+
       - uses: actions/upload-artifact@v1
         with:
           name: build
-          path: ./
+          path: ./*.tgz
 
   # release:
+
+  #   needs: build
+
   #   runs-on: ubuntu-latest
+
   #   on:
   #     push:
   #       branches:
@@ -58,4 +65,4 @@ jobs:
   #     - uses: actions/download-artifact
   #     - uses: rymndhng/tag-release-on-push-action
   #       with:
-          # strategy: patch
+  #         strategy: patch
