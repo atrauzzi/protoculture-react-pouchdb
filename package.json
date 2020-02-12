@@ -4,6 +4,10 @@
     "license": "Apache-2.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "lint": "eslint src/**"
+    },
     "devDependencies": {
         "typescript": "^3.7.5",
         "@typescript-eslint/eslint-plugin": "^2.19.0",

@@ -4,16 +4,16 @@
 [![npm version](https://badge.fury.io/js/protoculture.svg)](https://badge.fury.io/js/protoculture/react-pouchdb)
 
 ## About
-This is a set of React components which allow you to obtain live data from PouchDB instances. It supports multiple database connections which can be selected by well known string.
+This is a collection of React data components which allow you to obtain live data from PouchDB instances. It supports multiple database connections which can be selected by well known strings.
 
 If you're looking to build an offline-first application, look no further!
 
-## Mechanism
+## How it Works
 The current mechanism for handling updates is very simple. All queries performed by the `usePouchDbFind` hook are associated with the specified database connection in the nearest `PouchDb` component.
 
-This means that any time data changes in the database, all queries are re-run. My rationale for this is that there's no way to know which queries need to be re-run without actually hitting the database itself.
+This means that any time data changes in the database, all queries are re-run. My current rationale for this is that there's no way to know which queries need to be re-run without actually hitting the database itself.
 
-That said, I am interested in researching or being shown more options for improving how this is handled.  Here are some thoughts I've had so far:
+That said, I am interested in researching or being shown any options for improving how this is handled.  Here are some thoughts I've had so far:
 
  - If a document is new, the last query won't have its `_id`
  - If a document is deleted, we won't know the shape of the set

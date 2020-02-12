@@ -1,0 +1,11 @@
+.git/
+.github/
+src/
+node_modules/
+.editorconfig
+.eslintrc.js
+.gitignore
+protoculture.png
+tsconfig.json
+yarn.lock
+*.log

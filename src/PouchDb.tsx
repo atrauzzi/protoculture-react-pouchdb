@@ -47,9 +47,7 @@ export function PouchDb(props: PouchDbProps): JSX.Element
     const [ currentDatabases, setDatabases ] = React.useState<DatabaseMeta>({});
     React.useEffect(initialize, [ props.databases ]);
 
-    return <PouchDbProvider
-        value={currentDatabases}
-    >
+    return <PouchDbProvider value={currentDatabases}>
         { props.children }
     </PouchDbProvider>;
 
@@ -65,7 +63,8 @@ export function PouchDb(props: PouchDbProps): JSX.Element
 
             Object.keys(props.databases).map((name) =>
             {
-                const definition = props.databases[name];
+                // todo: This is causing an error.
+                const definition: any = props.databases[name];
 
                 const connection: PouchDB.Database = (
                     definition.connection
