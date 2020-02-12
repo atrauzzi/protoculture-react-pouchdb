@@ -36,7 +36,7 @@ jobs:
         uses: roryprimrose/rungitversion@v1.0.0
 
       - name: Yarn Version
-        run: yarn version --new-version ${{ steps.gitversion.outputs.FullSemVer }}
+        run: yarn version --no-git-tag-version --new-version ${{ steps.gitversion.outputs.FullSemVer }}
 
       - name: Build
         run: yarn build
