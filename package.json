@@ -2,8 +2,8 @@
     "name": "@protoculture/react-pouchdb",
     "version": "0.0.0-development",
     "license": "Apache-2.0",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
     "scripts": {
         "build": "tsc",
         "lint": "eslint src/**"
