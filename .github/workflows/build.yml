@@ -25,7 +25,7 @@ jobs:
         run: yarn lint
 
       - name: Fetch tags for GitVersion
-        run: git fetch --tags
+        run: git fetch --tags --unshallow
 
       - name: Fetch master for GitVersion
         if: github.ref != 'refs/heads/master'
