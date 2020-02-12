@@ -2,9 +2,9 @@ import React from "react";
 import PouchDB from "pouchdb";
 
 
-interface ConfigurationWithInstance
+interface ConfigurationWithInstance<Content>
 {
-    connection: PouchDB.Database<any>;
+    connection: PouchDB.Database<Content>;
 }
 
 interface ConfigurationWithoutInstance
@@ -13,7 +13,7 @@ interface ConfigurationWithoutInstance
     configuration?: PouchDB.Configuration.DatabaseConfiguration;
 }
 
-export type DatabaseConfigurationDictionary = { [name: string]: ConfigurationWithInstance | ConfigurationWithoutInstance };
+export type DatabaseConfigurationDictionary = { [name: string]: ConfigurationWithInstance<any> | ConfigurationWithoutInstance };
 
 interface PouchDbProps
 {
@@ -24,7 +24,7 @@ interface PouchDbProps
 export interface PouchDbMeta<Content>
 {
     connection: PouchDB.Database<Content>;
-    listener: PouchDB.Core.Changes<any>;
+    listener: PouchDB.Core.Changes<Content>;
     subscribers: { [id: string]: React.DispatchWithoutAction };
 }
 
