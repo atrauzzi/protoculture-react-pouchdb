@@ -36,13 +36,15 @@ jobs:
         uses: roryprimrose/rungitversion@v1.0.0
 
       - name: Yarn Version
-        run: yarn version --new-version ${{  steps.gitversion.outputs.FullSemVer }}
+        run: yarn version --new-version ${{ steps.gitversion.outputs.FullSemVer }}
 
       - name: Build
         run: yarn build
 
-      - uses: actions/upload-artifact
-        path: ./
+      - uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: ./
 
   # release:
   #   runs-on: ubuntu-latest
