@@ -1,0 +1,24 @@
+{
+    "name": "@protoculture/react-pouchdb",
+    "version": "0.0.0-development",
+    "license": "Apache-2.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "devDependencies": {
+        "typescript": "^3.7.5",
+        "@typescript-eslint/eslint-plugin": "^2.19.0",
+        "@typescript-eslint/parser": "^2.19.0",
+        "eslint": "^6.8.0",
+        "eslint-plugin-import": "^2.20.1",
+        "eslint-plugin-react": "^7.18.3",
+        "parcel-bundler": "^1.12.4"
+    },
+    "dependencies": {
+        "@types/pouchdb": "^6.4.0",
+        "@types/react": "^16.9.19",
+        "@types/uuid": "^3.4.7",
+        "pouchdb": "^7.1.1",
+        "react": "^16.12.0",
+        "uuid": "^3.4.0"
+    }
+}
