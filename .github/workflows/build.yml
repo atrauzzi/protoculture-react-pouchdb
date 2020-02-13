@@ -45,7 +45,7 @@ jobs:
       - name: Publish Package
         run: mv *.tgz artifacts/
 
-      - name: Publish Version
+      - name: Publish Metadata
         run: |
           echo ${{ steps.gitversion.outputs.FullSemVer }} >> artifacts/version
           echo protoculture-react-pouchdb-${{ steps.gitversion.outputs.FullSemVer }}.tgz >> artifacts/package
@@ -62,9 +62,6 @@ jobs:
     runs-on: ubuntu-latest
 
     if: github.ref == 'refs/heads/master'
-
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
 
