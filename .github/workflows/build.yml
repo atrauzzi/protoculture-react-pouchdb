@@ -87,7 +87,7 @@ jobs:
           echo "::set-env name=PACKAGE::`cat ./build/package`"
 
       - name: Create Release
-        id: create_release
+        id: create-release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -105,7 +105,7 @@ jobs:
         with:
           asset_name: ${{ env.PACKAGE }}
           asset_content_type: application/x-gzip
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: ./build/${{ env.PACKAGE }}
 
       - name: Publish Package to NPM
