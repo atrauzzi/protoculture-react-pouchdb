@@ -81,8 +81,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.gitversion.outputs.FullSemVer }}
-          release_name: ${{ steps.gitversion.outputs.FullSemVer }}
+          tag_name: ${{ VERSION }}
+          release_name: ${{ VERSION }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
