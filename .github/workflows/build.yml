@@ -55,6 +55,9 @@ jobs:
           name: build
           path: ./artifacts/
 
+      - name: Current ref
+        run: echo ${{ github.ref }}
+
   release:
 
     needs: build
