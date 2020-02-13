@@ -48,7 +48,7 @@ jobs:
       - name: Publish Version
         run: |
           echo ${{ steps.gitversion.outputs.FullSemVer }} >> artifacts/version
-          echo protoculture-react-pouchdb-${{ steps.gitversion.outputs.FullSemVer }} >> artifacts/package
+          echo protoculture-react-pouchdb-${{ steps.gitversion.outputs.FullSemVer }}.tgz >> artifacts/package
 
       - uses: actions/upload-artifact@v1
         with:
@@ -99,4 +99,4 @@ jobs:
           asset_name: NPM Package
           asset_content_type: application/x-gzip
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/*.tgz
+          asset_path: ./build/${{ PACKAGE }}
