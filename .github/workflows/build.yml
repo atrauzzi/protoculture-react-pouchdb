@@ -40,7 +40,7 @@ jobs:
         run: mkdir artifacts
 
       - name: Package
-        run: yarn pack
+        run: yarn pack --filename protoculture-react-pouchdb-${{ steps.gitversion.outputs.FullSemVer }}.tgz
 
       - name: Publish Package
         run: mv *.tgz artifacts/
