@@ -41,13 +41,19 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Prepare Artifact Directory
+        run: md artifacts
+
       - name: Package
         run: yarn pack
+
+      - name: Publish Package
+        run: mv *.tgz artifacts/
 
       - uses: actions/upload-artifact@v1
         with:
           name: build
-          path: ./*.tgz
+          path: ./artifacts/
 
   # release:
 
