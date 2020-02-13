@@ -10,3 +10,4 @@ protoculture.png
 tsconfig.json
 yarn.lock
 *.log
+GitVersion.yml

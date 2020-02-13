@@ -70,9 +70,6 @@ jobs:
 
       - uses: actions/setup-node@v1
 
-      - name: Install Yarn
-        run: npm install -g yarn
-
       - uses: actions/download-artifact@v1
         with:
           name: build
@@ -81,9 +78,6 @@ jobs:
         run: |
           echo "::set-env name=VERSION::`cat ./build/version`"
           echo "::set-env name=PACKAGE::`cat ./build/package`"
-
-      - name: Check
-        run: echo $VERSION
 
       - name: Create Release
         id: create_release
@@ -106,6 +100,9 @@ jobs:
           asset_content_type: application/x-gzip
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/${{ env.PACKAGE }}
+
+      - name: Prepare .npmrc
+        run: echo ${{ env.NPM_RC }} > .npmrc
 
       - name: Publish Package to NPM
         run: npm publish ./build/${{ env.PACKAGE }}
