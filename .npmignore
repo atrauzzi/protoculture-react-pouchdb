@@ -6,7 +6,6 @@ artifacts/
 .editorconfig
 .eslintrc.js
 .gitignore
-protoculture.png
 tsconfig.json
 yarn.lock
 *.log
