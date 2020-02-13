@@ -71,8 +71,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           always-auth: true
-          # registry-url: https://registry.npmjs.org
-          # scope: '@protoculture'
+          registry-url: https://registry.npmjs.org
+          scope: '@protoculture'
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
