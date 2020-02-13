@@ -96,7 +96,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          asset_name: NPM Package
+          asset_name: ${{ env.PACKAGE }}
           asset_content_type: application/x-gzip
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/${{ env.PACKAGE }}
