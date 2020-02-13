@@ -69,6 +69,12 @@ jobs:
     steps:
 
       - uses: actions/setup-node@v1
+        with:
+          always-auth: true
+          # registry-url: https://registry.npmjs.org
+          # scope: '@protoculture'
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
       - uses: actions/download-artifact@v1
         with:
@@ -101,10 +107,5 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/${{ env.PACKAGE }}
 
-      - name: Prepare .npmrc
-        run: echo ${{ env.NPM_RC }} > .npmrc
-
       - name: Publish Package to NPM
         run: npm publish ./build/${{ env.PACKAGE }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
