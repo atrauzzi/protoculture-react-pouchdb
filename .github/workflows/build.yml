@@ -50,16 +50,13 @@ jobs:
           name: build
           path: ./artifacts/
 
-      - name: Current ref
-        run: echo ${{ github.ref }}
-
   release:
 
     needs: build
 
     runs-on: ubuntu-latest
 
-    # if: github.ref == 'refs/heads/master'
+    if: ${{ github.ref }} == 'refs/heads/master'
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
