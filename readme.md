@@ -1,4 +1,4 @@
-# ![protoculture](protoculture.png)
+# ![protoculture](https://raw.githubusercontent.com/atrauzzi/protoculture-react-pouchdb/master/protoculture.png)
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Build](https://github.com/atrauzzi/protoculture-react-pouchdb/workflows/Build/badge.svg)
