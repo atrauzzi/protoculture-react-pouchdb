@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Build](https://github.com/atrauzzi/protoculture-react-pouchdb/workflows/Build/badge.svg)
-[![npm version](https://badge.fury.io/js/protoculture.svg)](https://badge.fury.io/js/protoculture/react-pouchdb)
+[![npm version](https://badge.fury.io/js/protoculture.svg)](https://www.npmjs.com/package/@protoculture/react-pouchdb)
 
 ## About
 This is a collection of React data components which allow you to obtain live data from PouchDB instances. It supports multiple database connections which can be selected by well known strings.
