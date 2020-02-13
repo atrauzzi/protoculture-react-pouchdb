@@ -45,6 +45,9 @@ jobs:
       - name: Publish Package
         run: mv *.tgz artifacts/
 
+      - name: Publish Version
+        run: echo ${{ steps.gitversion.outputs.FullSemVer }} >> artifacts/version
+
       - uses: actions/upload-artifact@v1
         with:
           name: build
@@ -66,16 +69,11 @@ jobs:
         with:
           name: build
 
-      - name: Fetch tags for GitVersion
-        run: git fetch --tags --unshallow
+      - name: Set Version
+        run: set VERSION=`cat artifacts/version`
 
-      - name: Fetch master for GitVersion
-        if: github.ref != 'refs/heads/master'
-        run: git branch --create-reflog master origin/master
-
-      - name: GitVersion
-        id: gitversion
-        uses: roryprimrose/rungitversion@v1.0.0
+      - name: Check
+        run: echo $VERSION
 
       - name: Create Release
         id: create_release
