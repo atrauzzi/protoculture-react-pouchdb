@@ -108,6 +108,6 @@ jobs:
           asset_path: ./build/${{ env.PACKAGE }}
 
       - name: Publish Package to NPM
-        run: npm publish ./build/${{ env.PACKAGE }}
+        run: npm publish --access public ./build/${{ env.PACKAGE }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
