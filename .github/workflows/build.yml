@@ -61,10 +61,8 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    on:
-      push:
-        branches:
-          - master
+    if: github.ref == 'master'
+      
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
