@@ -107,7 +107,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/${{ env.PACKAGE }}
 
-        - name: Publish Package to NPM
-          run: npm publish ./build/${{ env.PACKAGE }}
-          env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish Package to NPM
+        run: npm publish ./build/${{ env.PACKAGE }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
