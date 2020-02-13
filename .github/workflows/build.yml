@@ -42,7 +42,7 @@ jobs:
         run: yarn build
 
       - name: Prepare Artifact Directory
-        run: md artifacts
+        run: mkdir artifacts
 
       - name: Package
         run: yarn pack
