@@ -32,7 +32,7 @@ jobs:
         run: git branch --create-reflog master origin/master
 
       - name: GitVersion
-        id: gitversion  # step id used as reference for output values
+        id: gitversion
         uses: roryprimrose/rungitversion@v1.0.0
 
       - name: Yarn Version
@@ -55,20 +55,50 @@ jobs:
           name: build
           path: ./artifacts/
 
-  # release:
+  release:
 
-  #   needs: build
+    needs: build
 
-  #   runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  #   on:
-  #     push:
-  #       branches:
-  #         - master
-  #   env:
-  #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #   steps:
-  #     - uses: actions/download-artifact
-  #     - uses: rymndhng/tag-release-on-push-action
-  #       with:
-  #         strategy: patch
+    on:
+      push:
+        branches:
+          - master
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/download-artifact
+        with:
+          name: build
+
+      - name: Fetch tags for GitVersion
+        run: git fetch --tags --unshallow
+
+      - name: Fetch master for GitVersion
+        if: github.ref != 'refs/heads/master'
+        run: git branch --create-reflog master origin/master
+
+      - name: GitVersion
+        id: gitversion
+        uses: roryprimrose/rungitversion@v1.0.0
+
+        - name: Create Release
+          id: create_release
+          uses: actions/create-release@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            tag_name: ${{ steps.gitversion.outputs.FullSemVer }}
+            release_name: ${{ steps.gitversion.outputs.FullSemVer }}
+            draft: false
+            prerelease: false
+        - name: Upload Release Asset
+          id: upload-release-asset
+          uses: actions/upload-release-asset@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ./artifacts/*.tgz
