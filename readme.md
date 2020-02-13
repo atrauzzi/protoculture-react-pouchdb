@@ -1,6 +1,7 @@
 # ![protoculture](protoculture.png)
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+![Build](https://github.com/atrauzzi/protoculture-react-pouchdb/workflows/Build/badge.svg)
 [![npm version](https://badge.fury.io/js/protoculture.svg)](https://badge.fury.io/js/protoculture/react-pouchdb)
 
 ## About
