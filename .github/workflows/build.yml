@@ -62,12 +62,12 @@ jobs:
     runs-on: ubuntu-latest
 
     if: github.ref == 'master'
-      
+
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - uses: actions/download-artifact
+      - uses: actions/download-artifact@v1
         with:
           name: build
 
