@@ -67,6 +67,12 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
+
+      - uses: actions/setup-node@v1
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
       - uses: actions/download-artifact@v1
         with:
           name: build
@@ -100,3 +106,8 @@ jobs:
           asset_content_type: application/x-gzip
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/${{ env.PACKAGE }}
+
+      - name: Publish Package to NPM
+        run: yarn publish ./build/${{ env.PACKAGE }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
