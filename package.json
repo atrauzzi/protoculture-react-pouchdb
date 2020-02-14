@@ -4,6 +4,7 @@
     "keywords": [
         "react",
         "pouchdb",
+        "couchdb",
         "offline-first",
         "bidirectional",
         "typescript",
@@ -19,6 +20,7 @@
         }
     ],
     "homepage": "https://github.com/atrauzzi/protoculture-react-pouchdb",
+    "repository": "github:atrauzzi/react-protoculture-pouchdb",
     "private": false,
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
