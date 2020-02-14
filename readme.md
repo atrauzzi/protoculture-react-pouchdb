@@ -60,7 +60,7 @@ As you can see, you're free to configure PouchDB as per the official docs, this 
 ## Strong Typing for Databases
 Because this library is built with TypeScript, you do have the option to add hints for your code to benefit from type checking on the list of available databases as well as their structure.
 
-The following is an example of how you can provide this type information using TypeScript's powerful declaration merging:
+The following is an example of how you can provide this type information using TypeScripts powerful declaration merging:
 
 ```typescript
 interface TenantDb
@@ -74,7 +74,7 @@ interface UserDb
     notifications: string[];
 }
 
-declare module "@protoculture/react-pouchdb"
+declare module "@protoculture/react-pouchdb/lib/PouchDb"
 {
     export interface DatabaseMeta
     {

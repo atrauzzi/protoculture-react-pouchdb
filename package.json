@@ -1,7 +1,24 @@
 {
     "name": "@protoculture/react-pouchdb",
+    "description": "Live bidirectional data sync between PouchDB and your React components.",
+    "keywords": [
+        "react",
+        "pouchdb",
+        "offline-first",
+        "bidirectional",
+        "typescript",
+        "protoculture"
+    ],
     "version": "0.0.0-development",
     "license": "Apache-2.0",
+    "maintainers": [
+        {
+            "name": "Alexander Trauzzi",
+            "email": "atrauzzi@gmail.com",
+            "web": "https://github.com/atrauzzi"
+        }
+    ],
+    "homepage": "https://github.com/atrauzzi/protoculture-react-pouchdb",
     "private": false,
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
