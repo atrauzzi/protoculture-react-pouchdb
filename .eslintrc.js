@@ -20,11 +20,28 @@ module.exports = {
         'plugin:@typescript-eslint/recommended'
     ],
     rules: {
+        "no-shadow": [
+            "error",
+        ],
+        "func-style": [
+            "error",
+            "declaration",
+        ],
+        "no-duplicate-imports": [
+            "error",
+            {
+                "includeExports": false,
+            },
+        ],
+        "@typescript-eslint/explicit-function-return-type": [
+            "off",
+        ],
         "@typescript-eslint/indent": [
             "error",
             4
         ],
-        "brace-style": [
+        "brace-style": "off",
+        "@typescript-eslint/brace-style": [
             "error",
             "allman"
         ],
@@ -52,6 +69,10 @@ module.exports = {
         ],
         "no-throw-literal": [
             "error",
+        ],
+        // note: I'm not prepared to relax things this much.
+        "@typescript-eslint/no-explicit-any": [
+            "off",
         ],
         "@typescript-eslint/no-use-before-define": [
             "off",
@@ -90,9 +111,41 @@ module.exports = {
                 count: 2,
             },
         ],
+        "@typescript-eslint/type-annotation-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true,
+            },
+        ],
+        "key-spacing": [
+            "error",
+            {
+                "beforeColon": false,
+                "afterColon": true,
+            }
+        ],
+        "no-lonely-if": [
+            "error",
+        ],
+        "object-curly-spacing": [
+            "error",
+            "always",
+        ],
+        "array-bracket-spacing": [
+            "error",
+            "always",
+        ],
         "comma-style": [
             "error",
             "last",
+        ],
+        "space-unary-ops": [
+            "error",
+            {
+                "words": true,
+                "nonwords": true,
+            }
         ],
         "comma-dangle": [
             "error",
