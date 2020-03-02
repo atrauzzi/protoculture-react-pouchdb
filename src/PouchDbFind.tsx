@@ -28,7 +28,7 @@ export function usePouchDbFind<DatabaseName extends DatabaseNames>(databaseName:
 
     function initialize(): () => void
     {
-        if (!db)
+        if (! db)
         {
             return;
         }

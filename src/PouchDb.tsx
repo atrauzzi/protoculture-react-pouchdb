@@ -29,7 +29,8 @@ export interface PouchDbMeta<Content>
 }
 
 // note: Use declaration merging against this to add strongly typed databases.
-export interface DatabaseMeta {
+export interface DatabaseMeta
+{
     [name: string]: PouchDbMeta<any>;
 };
 
