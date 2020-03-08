@@ -2,18 +2,18 @@ import React from "react";
 import PouchDB from "pouchdb";
 
 
-interface ConfigurationWithInstance<Content>
+export interface ConfigurationWithInstance<Content>
 {
     connection: PouchDB.Database<Content>;
 }
 
-interface ConfigurationWithoutInstance
+export interface ConfigurationWithoutInstance
 {
     database: string;
     configuration?: PouchDB.Configuration.DatabaseConfiguration;
 }
 
-export type DatabaseConfigurationDictionary = { [name: string]: ( ConfigurationWithInstance<any> | ConfigurationWithoutInstance ) };
+export type DatabaseConfigurationDictionary = { [name: string]: ( ConfigurationWithInstance<any> & ConfigurationWithoutInstance ) };
 
 export interface PouchDbProps
 {

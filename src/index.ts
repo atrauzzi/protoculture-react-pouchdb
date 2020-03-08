@@ -1,2 +1,2 @@
-export { PouchDb, PouchDbProps, PouchDbConsumer, PouchDbProvider, pouchDbContext } from "./PouchDb";
+export { PouchDb, PouchDbProps, PouchDbConsumer, PouchDbProvider, pouchDbContext, ConfigurationWithInstance, ConfigurationWithoutInstance } from "./PouchDb";
 export { usePouchDbFind } from "./PouchDbFind";
