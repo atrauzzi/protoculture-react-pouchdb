@@ -4,7 +4,7 @@ import PouchDB from "pouchdb";
 
 export interface ConfigurationWithInstance<Content>
 {
-    connection: PouchDB.Database<Content>;
+    connection?: PouchDB.Database<Content>;
 }
 
 export interface ConfigurationWithoutInstance
