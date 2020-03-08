@@ -76,7 +76,7 @@ export function PouchDb(props: PouchDbProps): JSX.Element
         {
             const newDatabases: DatabaseMeta = {};
 
-            Object.keys(props.databases).map((name) =>
+            Object.keys(props.databases).forEach((name) =>
             {
                 // todo: Typing might be a little broken here.
                 const definition: any = props.databases[name];
@@ -116,7 +116,7 @@ export function PouchDb(props: PouchDbProps): JSX.Element
 
             Object.keys(props.syncs || {}).forEach((from) =>
             {
-                const to = props.syncs[from].to;
+                const to = newDatabases[from].connection;
                 const options = props.syncs[from].options;
 
                 newDatabases[from].connection.sync(to, options);
