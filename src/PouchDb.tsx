@@ -9,7 +9,7 @@ export interface ConfigurationWithInstance<Content>
 
 export interface ConfigurationWithoutInstance
 {
-    database: string;
+    database?: string;
     configuration?: PouchDB.Configuration.DatabaseConfiguration;
 }
 
