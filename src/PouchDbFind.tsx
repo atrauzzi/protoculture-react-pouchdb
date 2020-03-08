@@ -60,7 +60,7 @@ export function usePouchDbFind<DatabaseName extends DatabaseNames>(databaseName:
 
         async function effect(): Promise<void>
         {
-            const newResults = await db?.connection.find(findRequest) || null;
+            const newResults = await db?.connection?.find(findRequest) || null;
 
             cancelled || setResults(newResults);
         }
