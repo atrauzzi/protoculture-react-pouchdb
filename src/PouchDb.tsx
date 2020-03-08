@@ -13,11 +13,18 @@ interface ConfigurationWithoutInstance
     configuration?: PouchDB.Configuration.DatabaseConfiguration;
 }
 
-export type DatabaseConfigurationDictionary = { [name: string]: ConfigurationWithInstance<any> | ConfigurationWithoutInstance };
+export type DatabaseConfigurationDictionary = { [name: string]: ( ConfigurationWithInstance<any> | ConfigurationWithoutInstance ) };
 
 export interface PouchDbProps
 {
     databases: DatabaseConfigurationDictionary;
+
+    // todo: I would love to get strong-typing for keys from `databases` above
+    syncs?: {[from: string]: {
+        to: string;
+        options: PouchDB.Replication.SyncOptions;
+    };};
+
     children?: any;
 }
 
@@ -64,7 +71,7 @@ export function PouchDb(props: PouchDbProps): JSX.Element
 
             Object.keys(props.databases).map((name) =>
             {
-                // todo: This is causing an error.
+                // todo: Typing might be a little broken here.
                 const definition: any = props.databases[name];
 
                 const connection: PouchDB.Database = (
@@ -98,6 +105,14 @@ export function PouchDb(props: PouchDbProps): JSX.Element
                     });
 
                 newDatabases[name] = meta;
+            });
+
+            Object.keys(props.syncs || {}).forEach((from) =>
+            {
+                const to = props.syncs[from].to;
+                const options = props.syncs[from].options;
+
+                newDatabases[from].connection.sync(to, options);
             });
 
             setDatabases(newDatabases);
