@@ -15,7 +15,7 @@ interface ConfigurationWithoutInstance
 
 export type DatabaseConfigurationDictionary = { [name: string]: ConfigurationWithInstance<any> | ConfigurationWithoutInstance };
 
-interface PouchDbProps
+export interface PouchDbProps
 {
     databases: DatabaseConfigurationDictionary;
     children?: any;
