@@ -13,17 +13,24 @@ export interface ConfigurationWithoutInstance
     configuration?: PouchDB.Configuration.DatabaseConfiguration;
 }
 
-export type DatabaseConfigurationDictionary = { [name: string]: ( ConfigurationWithInstance<any> & ConfigurationWithoutInstance ) };
+export interface DatabaseConfigurationDictionary
+{
+    [name: string]: ( ConfigurationWithInstance<any> & ConfigurationWithoutInstance );
+};
+
+export interface DatabaseSyncConfigurationDictionary
+{
+    [from: string]: {
+        to: string;
+        options: PouchDB.Replication.SyncOptions;
+    };
+};
 
 export interface PouchDbProps
 {
     databases: DatabaseConfigurationDictionary;
 
-    // todo: I would love to get strong-typing for keys from `databases` above
-    syncs?: {[from: string]: {
-        to: string;
-        options: PouchDB.Replication.SyncOptions;
-    };};
+    syncs: DatabaseSyncConfigurationDictionary;
 
     children?: any;
 }
