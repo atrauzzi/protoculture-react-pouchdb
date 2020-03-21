@@ -4,12 +4,12 @@ import PouchDB from "pouchdb";
 
 export interface ConfigurationWithInstance<Content>
 {
-    connection?: PouchDB.Database<Content>;
+    connection?: null | PouchDB.Database<Content>;
 }
 
 export interface ConfigurationWithoutInstance
 {
-    database?: string;
+    database?: null | string;
     configuration?: PouchDB.Configuration.DatabaseConfiguration;
 }
 
@@ -40,12 +40,13 @@ export interface PouchDbMeta<Content>
     connection: PouchDB.Database<Content>;
     listener: PouchDB.Core.Changes<Content>;
     subscribers: { [id: string]: React.DispatchWithoutAction };
+    syncs: PouchDB.Replication.Sync<Content>[];
 }
 
 // note: Use declaration merging against this to add strongly typed databases.
 export interface DatabaseMeta
 {
-    [name: string]: PouchDbMeta<any>;
+    [name: string]: null | PouchDbMeta<any>;
 };
 
 export const pouchDbContext = React.createContext<DatabaseMeta>(null);
@@ -78,19 +79,25 @@ export function PouchDb(props: PouchDbProps): JSX.Element
 
             Object.keys(props.databases).forEach((name) =>
             {
-                // todo: Typing might be a little broken here.
-                const definition: any = props.databases[name];
+                const definition = props.databases[name];
+
+                if (! definition.database && ! definition.connection)
+                {
+                    newDatabases[name] = null;
+
+                    return;
+                }
 
                 const connection: PouchDB.Database = (
                     definition.connection
                     || new PouchDB(definition.database, definition.configuration)
                 );
 
-                // todo: I don't like everything from here to the last line of this function.
                 const meta: PouchDbMeta<any> = {
                     connection,
                     listener: null,
                     subscribers: {},
+                    syncs: [],
                 };
 
                 meta.listener = connection
@@ -116,10 +123,23 @@ export function PouchDb(props: PouchDbProps): JSX.Element
 
             Object.keys(props.syncs || {}).forEach((from) =>
             {
-                const to = newDatabases[from].connection;
+                const to = props.syncs[from].to;
+
+                if (
+                    ! newDatabases[from]?.connection
+                    || ! newDatabases[to]?.connection
+                )
+                {
+                    return;
+                }
+
+                const fromConnection = newDatabases[from].connection;
+                const toConnection = newDatabases[to].connection;
                 const options = props.syncs[from].options;
 
-                newDatabases[from].connection.sync(to, options);
+                const sync = fromConnection.sync(toConnection, options);
+
+                currentDatabases[from]?.syncs.push(sync);
             });
 
             setDatabases(newDatabases);
@@ -129,6 +149,7 @@ export function PouchDb(props: PouchDbProps): JSX.Element
         {
             Object.keys(currentDatabases).map((name) =>
             {
+                currentDatabases[name].syncs.forEach((sync) => sync.cancel());
                 currentDatabases[name]?.listener.cancel();
                 currentDatabases[name]?.connection.close();
             });
