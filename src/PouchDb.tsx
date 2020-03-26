@@ -103,7 +103,6 @@ export function PouchDb(props: PouchDbProps): JSX.Element
                 meta.listener = connection
                     .changes({
                         live: true,
-                        retry: true,
                         since: "now",
                     })
                     // note: This is the mechanism to trigger rerenders of descendants without rerendering the whole sub-tree.
@@ -138,7 +137,10 @@ export function PouchDb(props: PouchDbProps): JSX.Element
                 const toConnection = newDatabases[to].connection;
                 const options = props.syncs[from].options;
 
-                const sync = fromConnection.sync(toConnection, options);
+                const sync = fromConnection.sync(toConnection, {
+                    retry: true,
+                    ...options
+                });
 
                 currentDatabases[from]?.syncs.push(sync);
             });
