@@ -103,6 +103,7 @@ export function PouchDb(props: PouchDbProps): JSX.Element
                 meta.listener = connection
                     .changes({
                         live: true,
+                        retry: true,
                         since: "now",
                     })
                     // note: This is the mechanism to trigger rerenders of descendants without rerendering the whole sub-tree.
